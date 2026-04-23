@@ -143,12 +143,24 @@
       opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
       filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
   }
 
   .text-reveal.visible {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+    will-change: auto;
+  }
+
+  /* 모바일 환경에서 애니메이션 최적화 */
+  @media (max-width: 768px) {
+    .text-reveal {
+      transition:
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
   }
 
   /* Stagger delays */
@@ -184,6 +196,7 @@
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
+    will-change: background-color, border-color;
   }
 
   .btn-apple::before {
@@ -195,6 +208,7 @@
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: 9999px;
+    will-change: transform;
   }
 
   .btn-apple:hover::before {
@@ -226,11 +240,16 @@
     background: white;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     border: none;
+    will-change: background-color, transform;
   }
 
   .btn-apple-primary:hover {
     background: rgba(255,255,255,0.88);
     transform: scale(1.02);
+  }
+
+  .btn-apple-primary:active {
+    transform: scale(0.98);
   }
 
   /* Grain texture overlay */
@@ -264,12 +283,20 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid rgba(255,255,255,0.05);
     background: rgba(255,255,255,0.02);
+    will-change: border-color, background-color, transform;
   }
 
   .card-hover:hover {
     border-color: rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
     transform: translateY(-3px);
+  }
+
+  /* 모바일 환경에서 카드 호버 최적화 */
+  @media (max-width: 768px) {
+    .card-hover:hover {
+      transform: translateY(-1px);
+    }
   }
 
   /* Scroll line animation */
@@ -300,5 +327,14 @@
 
   .animate-fade-up {
     animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* 모바일 환경에서 애니메이션 감소 */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

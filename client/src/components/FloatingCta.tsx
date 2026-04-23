@@ -42,10 +42,10 @@ export default function FloatingCta() {
           letterSpacing: "0.01em",
           transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.03)";
+        onTouchStart={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.98)";
         }}
-        onMouseLeave={(e) => {
+        onTouchEnd={(e) => {
           (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
         }}
       >

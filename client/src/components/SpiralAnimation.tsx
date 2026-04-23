@@ -138,20 +138,24 @@ class AnimationController {
     private dpr: number
     private size: number
     private stars: Star[] = []
+    private isMobile: boolean
     
     private readonly changeEventTime = 0.32
     private readonly cameraZ = -400
     private readonly cameraTravelDistance = 3400
     private readonly startDotYOffset = 28
     private readonly viewZoom = 100
-    private readonly numberOfStars = 5000
+    private readonly numberOfStars: number // 모바일에서 감소
     private readonly trailLength = 80
     
-    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, dpr: number, size: number) {
+    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, dpr: number, size: number, isMobile: boolean = false) {
         this.canvas = canvas
         this.ctx = ctx
         this.dpr = dpr
         this.size = size
+        this.isMobile = isMobile
+        // 모바일에서는 별의 개수를 50% 감소
+        this.numberOfStars = isMobile ? 2500 : 5000
         this.timeline = gsap.timeline({ repeat: -1 })
         
         this.setupRandomGenerator()
@@ -318,17 +322,26 @@ export function SpiralAnimation() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const animationRef = useRef<AnimationController | null>(null)
     const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight })
+    const [isMobile, setIsMobile] = useState(false)
     
     useEffect(() => {
+        // 모바일 감지
+        const checkMobile = () => {
+            const mobile = window.innerWidth < 768 || window.matchMedia("(hover: none)").matches
+            setIsMobile(mobile)
+        }
+        
+        checkMobile()
+        
         const handleResize = () => {
+            checkMobile()
             setDimensions({
                 width: window.innerWidth,
                 height: window.innerHeight
             })
         }
         
-        handleResize()
-        window.addEventListener('resize', handleResize)
+        window.addEventListener('resize', handleResize, { passive: true })
         return () => window.removeEventListener('resize', handleResize)
     }, [])
     
@@ -336,7 +349,7 @@ export function SpiralAnimation() {
         const canvas = canvasRef.current
         if (!canvas) return
         
-        const ctx = canvas.getContext('2d')
+        const ctx = canvas.getContext('2d', { alpha: false })
         if (!ctx) return
         
         const dpr = window.devicePixelRatio || 1
@@ -350,7 +363,8 @@ export function SpiralAnimation() {
         
         ctx.scale(dpr, dpr)
         
-        animationRef.current = new AnimationController(canvas, ctx, dpr, size)
+        // 모바일 여부를 전달
+        animationRef.current = new AnimationController(canvas, ctx, dpr, size, isMobile)
         
         return () => {
             if (animationRef.current) {
@@ -358,14 +372,14 @@ export function SpiralAnimation() {
                 animationRef.current = null
             }
         }
-    }, [dimensions])
+    }, [dimensions, isMobile])
     
     return (
         <div className="relative w-full h-full">
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full"
-                style={{ display: 'block' }}
+                style={{ display: 'block', willChange: 'transform' }}
             />
         </div>
     )

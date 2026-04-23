@@ -7,6 +7,7 @@ export function useScrollReveal(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
 
+    // IntersectionObserver 옵션 최적화
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -17,10 +18,15 @@ export function useScrollReveal(threshold = 0.15) {
             if (entry.target.classList.contains("text-reveal")) {
               entry.target.classList.add("visible");
             }
+            // 한 번 표시되면 관찰 중단 (성능 최적화)
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold }
+      { 
+        threshold,
+        rootMargin: "50px" // 미리 로드 시작
+      }
     );
 
     observer.observe(el);
@@ -37,15 +43,21 @@ export function useElementReveal(threshold = 0.2) {
     const el = ref.current;
     if (!el) return;
 
+    // IntersectionObserver 옵션 최적화
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            // 한 번 표시되면 관찰 중단 (성능 최적화)
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold }
+      { 
+        threshold,
+        rootMargin: "50px" // 미리 로드 시작
+      }
     );
 
     // Observe all text-reveal children
