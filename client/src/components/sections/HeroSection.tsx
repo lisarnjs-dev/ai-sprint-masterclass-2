@@ -1,61 +1,41 @@
 /*
  * DESIGN: Apple-Inspired Cinematic Minimalism
- * Hero: Full-screen, cinematic text reveal, scroll-down indicator
- * Background: Generated dark abstract image with subtle grain
+ * Hero: Full-screen, cinematic text reveal, 3D spiral animation
+ * Background: 3D spiral animation with stars
  */
 import { useEffect, useState } from "react";
-
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663589554565/amhVrRo3SNWxSVcs8Xj6yi/hero-bg-dAqfd7cJLfydZQGbCsoYop.webp";
+import { SpiralAnimation } from "@/components/SpiralAnimation";
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => clearTimeout(timer);
   }, []);
-
-  const parallaxOffset = scrollY * 0.4;
-  const heroOpacity = Math.max(0, 1 - scrollY / 600);
 
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       style={{ background: "#000" }}
     >
-      {/* Background image with parallax */}
+      {/* 3D Spiral Animation Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <SpiralAnimation />
+      </div>
+
+      {/* Overlay gradient */}
       <div
         className="absolute inset-0"
         style={{
-          transform: `translateY(${parallaxOffset}px)`,
-          opacity: 0.45,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,0.95) 100%)",
         }}
-      >
-        <img
-          src={HERO_BG}
-          alt=""
-          className="w-full h-full object-cover"
-          style={{ objectPosition: "center top" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,1) 100%)",
-          }}
-        />
-      </div>
+      />
 
       {/* Content */}
       <div
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-        style={{ opacity: heroOpacity }}
       >
         {/* Badge */}
         <div
@@ -183,7 +163,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(-20px)",
