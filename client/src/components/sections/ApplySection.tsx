@@ -73,8 +73,8 @@ export default function ApplySection() {
         <div ref={ref2} className="grid md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
           {[
             { label: "모집 인원", value: "선착순 20명", icon: "👥" },
-            { label: "수강 기간", value: "5주 집중 과정", icon: "📅" },
-            { label: "수강 대상", value: "비개발자 누구나", icon: "✨" },
+            { label: "모집 기간", value: "4/23 ~ 4/30", icon: "📅" },
+            { label: "진행 기간", value: "5/11 ~ 6/14", icon: "✨" },
           ].map((item, i) => (
             <div
               key={item.label}

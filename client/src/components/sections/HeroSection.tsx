@@ -73,7 +73,7 @@ export default function HeroSection() {
               background: "rgba(255,255,255,0.05)",
             }}
           >
-            2기 모집 중 · 선착순 20명
+            2기 모집 중 · 4/23(목) 18시 ~ 4/30(목) 자정
           </span>
         </div>
 
@@ -83,49 +83,37 @@ export default function HeroSection() {
           style={{
             fontSize: "clamp(3rem, 8vw, 7rem)",
             lineHeight: 1.05,
-            letterSpacing: "-0.02em",
-            color: "#FFFFFF",
+            letterSpacing: "-0.03em",
+            color: "#fff",
+            fontWeight: 900,
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(40px)",
             filter: visible ? "blur(0)" : "blur(8px)",
-            transition: "all 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s",
+            transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
+            marginBottom: "1.5rem",
           }}
         >
           AI Product
           <br />
-          <span style={{ color: "rgba(255,255,255,0.85)", fontStyle: "italic" }}>
+          <span style={{ fontStyle: "italic", color: "rgba(255,255,255,0.85)" }}>
             Sprint
           </span>
+          <br />
+          Master Class 2기
         </h1>
 
-        {/* Sub headline */}
-        <h2
-          className="font-display mt-2"
+        {/* Subtitle */}
+        <p
+          className="text-lg md:text-xl"
           style={{
-            fontSize: "clamp(2rem, 5vw, 4.5rem)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.01em",
             color: "rgba(255,255,255,0.5)",
+            fontWeight: 300,
+            lineHeight: 1.7,
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(40px)",
             filter: visible ? "blur(0)" : "blur(8px)",
-            transition: "all 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s",
-          }}
-        >
-          Master Class 2기
-        </h2>
-
-        {/* Description */}
-        <p
-          className="mt-8 text-lg md:text-xl max-w-2xl mx-auto"
-          style={{
-            color: "rgba(255,255,255,0.45)",
-            fontWeight: 300,
-            lineHeight: 1.7,
-            letterSpacing: "0.01em",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(30px)",
-            transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s",
+            transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
+            marginBottom: "2rem",
           }}
         >
           코딩을 몰라도 괜찮습니다.
@@ -135,26 +123,27 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(20px)",
-            transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s",
+            transform: visible ? "translateY(0)" : "translateY(40px)",
+            filter: visible ? "blur(0)" : "blur(8px)",
+            transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s",
           }}
         >
           <button
-            className="btn-apple-primary"
             onClick={() => {
               const el = document.getElementById("apply");
               if (el) el.scrollIntoView({ behavior: "smooth" });
             }}
+            className="btn-apple-primary"
           >
             지금 신청하기
           </button>
           <button
             className="btn-apple"
             onClick={() => {
-              const el = document.getElementById("about");
+              const el = document.getElementById("curriculum");
               if (el) el.scrollIntoView({ behavior: "smooth" });
             }}
           >
@@ -162,58 +151,64 @@ export default function HeroSection() {
           </button>
         </div>
 
-        {/* Stats row */}
+        {/* Schedule info */}
         <div
-          className="flex justify-center gap-12 mt-16"
+          className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center text-sm"
           style={{
             opacity: visible ? 1 : 0,
-            transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 1s",
+            transform: visible ? "translateY(0)" : "translateY(40px)",
+            filter: visible ? "blur(0)" : "blur(8px)",
+            transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
           }}
         >
-          {[
-            { value: "5주", label: "집중 과정" },
-            { value: "20명", label: "선착순 모집" },
-            { value: "100%", label: "비개발자 대상" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div
-                className="font-display text-2xl md:text-3xl text-white"
-                style={{ fontWeight: 700 }}
-              >
-                {stat.value}
-              </div>
-              <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>
-                {stat.label}
-              </div>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+              모집 기간
             </div>
-          ))}
+            <div style={{ color: "rgba(255,255,255,0.7)", fontWeight: 400 }}>
+              4월 23일 ~ 4월 30일
+            </div>
+          </div>
+          <div style={{ width: "1px", height: "24px", background: "rgba(255,255,255,0.1)" }} />
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+              진행 기간
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.7)", fontWeight: 400 }}>
+              5월 11일 ~ 6월 14일 (5주)
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
         style={{
-          opacity: visible ? (scrollY > 50 ? 0 : 0.5) : 0,
-          transition: "opacity 0.5s ease",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(-20px)",
+          transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s",
         }}
       >
-        <span className="section-label text-[10px]">스크롤</span>
-        <div className="w-px h-12 overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
-          <div
-            className="w-full bg-white"
-            style={{
-              height: "50%",
-              animation: "scrollLine 1.8s ease-in-out infinite",
-            }}
-          />
+        <div
+          style={{
+            animation: "bounce 2s infinite",
+            color: "rgba(255,255,255,0.3)",
+            fontSize: "0.75rem",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ margin: "0 auto" }}>
+            <path d="M10 4v10M6 12l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </div>
 
       <style>{`
-        @keyframes scrollLine {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(200%); }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(8px); }
         }
       `}</style>
     </section>
