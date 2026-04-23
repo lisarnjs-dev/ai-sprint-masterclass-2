@@ -1,160 +1,302 @@
 /*
  * DESIGN: Apple-Inspired Cinematic Minimalism
- * Apply: Full-width CTA with community visual, urgency indicators
+ * Apply: Pricing cards, CTA, social proof
  */
 import { useElementReveal } from "@/hooks/useScrollReveal";
 
-const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663589554565/amhVrRo3SNWxSVcs8Xj6yi/community-visual-gWURqE2kB4GNCnjxpWReCU.webp";
+const pricingOptions = [
+  {
+    id: 1,
+    title: "Master Class 2기",
+    subtitle: "(리뷰 이벤트+20% 할인)",
+    price: "442,000",
+    originalPrice: "590,000",
+    discount: "25% 할인",
+    features: [
+      "8개 파트 + 보너스 강의",
+      "실전 프로젝트 2개",
+      "결제 시스템 구축",
+      "3개월 노션 접근",
+      "무한 피드백",
+      "모각코 참여 가능",
+    ],
+    highlighted: true,
+    cta: "지금 신청하기",
+  },
+  {
+    id: 2,
+    title: "Master Class 2기",
+    subtitle: "(20% 할인만)",
+    price: "472,000",
+    originalPrice: "590,000",
+    discount: "20% 할인",
+    features: [
+      "8개 파트 + 보너스 강의",
+      "실전 프로젝트 2개",
+      "결제 시스템 구축",
+      "3개월 노션 접근",
+      "무한 피드백",
+      "모각코 참여 가능",
+    ],
+    highlighted: false,
+    cta: "신청하기",
+  },
+  {
+    id: 3,
+    title: "Master Class 3기",
+    subtitle: "(10% 할인+미리 자리)",
+    price: "531,000",
+    originalPrice: "590,000",
+    discount: "10% 할인",
+    features: [
+      "8개 파트 + 보너스 강의",
+      "실전 프로젝트 2개",
+      "결제 시스템 구축",
+      "3개월 노션 접근",
+      "무한 피드백",
+      "모각코 참여 가능",
+    ],
+    highlighted: false,
+    cta: "자리 예약하기",
+  },
+];
+
+const results = [
+  {
+    icon: "🚀",
+    title: "실제 배포된 서비스 URL",
+    desc: "로컬이 아닌 실제 인터넷에 올라간 예약 시스템",
+  },
+  {
+    icon: "💳",
+    title: "결제까지 되는 진짜 서비스",
+    desc: "토스페이먼츠 결제 기능 연동 완료",
+  },
+  {
+    icon: "🎯",
+    title: "혼자 계속 만드는 능력",
+    desc: "에러 해결, v2 기획, 새 기능 추가를 혼자 할 수 있는 워크플로우",
+  },
+];
 
 export default function ApplySection() {
   const ref1 = useElementReveal(0.15);
   const ref2 = useElementReveal(0.1);
-
-  const handleApply = () => {
-    // 신청 링크 연결 예정
-    alert("신청 링크를 연결해 주세요. (예: 구글 폼, 카카오채널 등)");
-  };
+  const ref3 = useElementReveal(0.1);
 
   return (
-    <section id="apply" className="relative py-32 md:py-48 overflow-hidden" style={{ background: "#000" }}>
-      {/* Background image */}
-      <div
-        className="absolute inset-0"
-        style={{ opacity: 0.08 }}
-      >
-        <img
-          src={COMMUNITY_IMG}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="container relative z-10">
+    <section id="apply" className="relative py-32 md:py-48" style={{ background: "#000" }}>
+      <div className="container">
         {/* Header */}
-        <div ref={ref1} className="text-center mb-16">
-          <p className="section-label mb-6 text-reveal">지금 신청하세요</p>
+        <div ref={ref1} className="max-w-3xl mb-20">
+          <p className="section-label mb-6 text-reveal">가격 및 신청</p>
           <h2
-            className="font-display text-reveal delay-100 glow-white"
+            className="font-display text-reveal delay-100"
             style={{
-              fontSize: "clamp(3rem, 7vw, 6rem)",
-              lineHeight: 1.05,
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              lineHeight: 1.1,
               letterSpacing: "-0.02em",
               color: "#fff",
             }}
           >
-            당신의 아이디어를
+            당신의 선택
             <br />
-            <span style={{ color: "rgba(255,255,255,0.5)", fontStyle: "italic" }}>
-              현실로 만드세요.
-            </span>
+            <span style={{ color: "rgba(255,255,255,0.4)" }}>지금 시작하세요.</span>
           </h2>
-          <p
-            className="mt-8 text-lg text-reveal delay-200 max-w-xl mx-auto"
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              fontWeight: 300,
-              lineHeight: 1.7,
-            }}
-          >
-            선착순 20명 한정. 코딩 경험이 없어도 됩니다.
-            아이디어와 의지만 있으면 충분합니다.
-          </p>
         </div>
 
-        {/* Info cards */}
-        <div ref={ref2} className="grid md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
-          {[
-            { label: "모집 인원", value: "선착순 20명", icon: "👥" },
-            { label: "모집 기간", value: "4/23 ~ 4/30", icon: "📅" },
-            { label: "진행 기간", value: "5/11 ~ 6/14", icon: "✨" },
-          ].map((item, i) => (
+        {/* Pricing cards */}
+        <div ref={ref2} className="grid md:grid-cols-3 gap-6 mb-20">
+          {pricingOptions.map((option, idx) => (
             <div
-              key={item.label}
-              className="text-reveal text-center p-6 rounded-xl"
+              key={option.id}
+              className="text-reveal rounded-2xl p-8 flex flex-col"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                transitionDelay: `${i * 0.1}s`,
+                transitionDelay: `${idx * 0.08}s`,
+                background: option.highlighted
+                  ? "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)"
+                  : "rgba(255,255,255,0.02)",
+                border: option.highlighted
+                  ? "1.5px solid rgba(255,255,255,0.15)"
+                  : "1px solid rgba(255,255,255,0.05)",
+                transform: option.highlighted ? "scale(1.02)" : "scale(1)",
               }}
             >
-              <div className="text-2xl mb-3">{item.icon}</div>
-              <div
-                className="font-display text-xl text-white mb-1"
-                style={{ fontWeight: 700 }}
+              {/* Badge */}
+              {option.highlighted && (
+                <div
+                  className="inline-flex w-fit px-3 py-1 rounded-full mb-4 text-xs"
+                  style={{
+                    background: "rgba(255,255,255,0.1)",
+                    color: "rgba(255,255,255,0.8)",
+                    fontWeight: 600,
+                  }}
+                >
+                  ⭐ 추천
+                </div>
+              )}
+
+              {/* Title */}
+              <h3
+                className="font-display text-lg mb-1"
+                style={{ color: "#fff", fontWeight: 700 }}
               >
-                {item.value}
-              </div>
-              <div
-                className="text-xs"
+                {option.title}
+              </h3>
+              <p
+                className="text-xs mb-4"
                 style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300 }}
               >
-                {item.label}
+                {option.subtitle}
+              </p>
+
+              {/* Price */}
+              <div className="mb-6">
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span
+                    className="font-display text-3xl"
+                    style={{ color: "#fff", fontWeight: 700 }}
+                  >
+                    {option.price}
+                  </span>
+                  <span
+                    className="text-xs"
+                    style={{ color: "rgba(255,255,255,0.25)" }}
+                  >
+                    원
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="text-xs line-through"
+                    style={{ color: "rgba(255,255,255,0.25)" }}
+                  >
+                    {option.originalPrice}원
+                  </span>
+                  <span
+                    className="text-xs px-2 py-1 rounded"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      color: "rgba(255,255,255,0.6)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {option.discount}
+                  </span>
+                </div>
               </div>
+
+              {/* Features */}
+              <ul className="flex-1 space-y-3 mb-6">
+                {option.features.map((feature, i) => (
+                  <li
+                    key={i}
+                    className="text-sm flex items-start gap-2"
+                    style={{ color: "rgba(255,255,255,0.45)", fontWeight: 300 }}
+                  >
+                    <span style={{ color: "rgba(255,255,255,0.15)", flexShrink: 0 }}>✓</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => {
+                  alert("신청 링크를 준비 중입니다. 곧 업데이트 됩니다!");
+                }}
+                className="w-full py-3 rounded-lg font-display font-600 transition-all"
+                style={{
+                  background: option.highlighted ? "#fff" : "rgba(255,255,255,0.08)",
+                  color: option.highlighted ? "#000" : "#fff",
+                  border: option.highlighted ? "none" : "1px solid rgba(255,255,255,0.15)",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+                }}
+              >
+                {option.cta}
+              </button>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* Results */}
+        <div ref={ref3} className="mb-20">
+          <h3
+            className="font-display text-2xl mb-8"
+            style={{ color: "#fff", fontWeight: 700 }}
+          >
+            수강 후 결과물 3가지
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {results.map((result, i) => (
+              <div
+                key={i}
+                className="text-reveal p-6 rounded-xl"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                  transitionDelay: `${i * 0.1}s`,
+                }}
+              >
+                <div
+                  className="text-4xl mb-4"
+                  style={{ fontWeight: 700 }}
+                >
+                  {result.icon}
+                </div>
+                <h4
+                  className="font-display text-lg mb-2"
+                  style={{ color: "#fff", fontWeight: 700 }}
+                >
+                  {result.title}
+                </h4>
+                <p
+                  className="text-sm"
+                  style={{ color: "rgba(255,255,255,0.45)", fontWeight: 300 }}
+                >
+                  {result.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Enrollment info */}
         <div
-          className="text-reveal flex flex-col items-center gap-4"
-          style={{ transitionDelay: "0.3s" }}
+          className="text-reveal text-center p-8 rounded-xl"
+          style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
         >
-          <button
-            onClick={handleApply}
-            className="btn-apple-primary text-lg px-12 py-4"
-            style={{ fontSize: "1.0625rem" }}
-          >
-            수강 신청하기
-          </button>
           <p
-            className="text-xs text-center"
-            style={{ color: "rgba(255,255,255,0.25)", fontWeight: 300 }}
+            className="text-sm mb-2"
+            style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300 }}
           >
-            수강료는 추후 공지됩니다 · 선착순 마감
+            모집 기간
+          </p>
+          <p
+            className="font-display text-xl mb-4"
+            style={{ color: "#fff", fontWeight: 700 }}
+          >
+            4월 23일(목) 18시 ~ 4월 30일(목) 자정
+          </p>
+          <p
+            className="text-sm"
+            style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300 }}
+          >
+            선착순 20명 | 진행 기간: 5월 11일 ~ 6월 14일 (총 5주)
           </p>
         </div>
 
-        {/* Urgency bar */}
-        <div
-          className="mt-16 max-w-sm mx-auto"
-        >
-          <div className="flex justify-between items-center mb-2">
-            <span className="section-label text-[10px]">모집 현황</span>
-            <span
-              className="font-mono-custom text-xs"
-              style={{ color: "rgba(255,255,255,0.4)" }}
-            >
-              ? / 20명
-            </span>
-          </div>
-          <div
-            className="h-px w-full rounded-full overflow-hidden"
-            style={{ background: "rgba(255,255,255,0.1)" }}
-          >
-            <div
-              className="h-full rounded-full"
-              style={{
-                width: "35%",
-                background: "rgba(255,255,255,0.6)",
-                transition: "width 1.5s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            />
-          </div>
-          <p
-            className="text-xs mt-2 text-center"
-            style={{ color: "rgba(255,255,255,0.2)", fontWeight: 300 }}
-          >
-            * 실제 모집 현황으로 업데이트해 주세요
-          </p>
-        </div>
+        {/* Divider */}
+        <div className="section-divider mt-24" />
       </div>
     </section>
   );

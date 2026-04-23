@@ -1,45 +1,51 @@
 /*
  * DESIGN: Apple-Inspired Cinematic Minimalism
- * Testimonials: Large quote cards, staggered grid
+ * Testimonials: Quote cards, student feedback, social proof
  */
 import { useElementReveal } from "@/hooks/useScrollReveal";
 
 const testimonials = [
   {
-    quote: "코딩을 전혀 몰랐는데, 5주 만에 실제로 동작하는 서비스를 만들었습니다. 믿기지 않을 정도예요.",
-    name: "김○○",
-    role: "마케터",
-    initial: "K",
+    id: 1,
+    quote: "혼자서 바이브코딩 조작조작 해봤는데 독학으론 한계가 있었어요. 강의가 파트별로 짧게 나뉘어져 있어서 제 일정에 맞춰 듣기 편했고, 피로도가 훨씬 줄었어요. 부담없이 자주자주 들어가게 되는 것 같아요.",
+    author: "1기 수강생, A타입",
+    topic: "독학의 한계 → 완주",
   },
   {
-    quote: "AI 도구를 어떻게 써야 할지 막막했는데, 체계적으로 배우니 이제는 혼자서도 뭔가를 만들 수 있다는 자신감이 생겼습니다.",
-    name: "이○○",
-    role: "기획자",
-    initial: "L",
+    id: 2,
+    quote: "항상 아이디어를 구현하고 싶다는 생각이 있었는데, 어디서부터 시작해야 할지 막막했어요. 주차별 진도표가 있어서 목표를 명확히 가져갈 수 있고, AI 초심자 입장에서 강의 대로 집중할 수 있어서 좋습니다.",
+    author: "1기 수강생, B타입 (직장인)",
+    topic: "아이디어 → 실제 배포",
   },
   {
-    quote: "개발자에게 의존하지 않아도 된다는 게 이렇게 해방감을 줄 줄 몰랐어요. 아이디어가 있는 분들께 강력 추천합니다.",
-    name: "박○○",
-    role: "스타트업 창업자",
-    initial: "P",
+    id: 3,
+    quote: "처음엔 바이브코딩 해야 되는데... 하는 무거운 마음이 컸는데, 지금은 일단 시작해보자는 마인드로 많이 바뀌었어요. 모각코 시간이랑 쌤께 언제든 질문드릴 수 있다는 든든함 덕분인 것 같아요. 모각코도 너무 귀여워요, 빠지기 싫어요.",
+    author: "1기 수강생, B타입",
+    topic: "모각코가 완주의 핵심",
   },
   {
-    quote: "5주 과정이 끝나고 나서도 계속 뭔가를 만들고 있어요. 배운 것들이 실제 업무에 바로 적용됩니다.",
-    name: "최○○",
-    role: "PM",
-    initial: "C",
+    id: 4,
+    quote: "주차별 강의가 짧게 나뉘어 있어서 부담없이 들을 수 있어요. 주차별 미션이 있어서 학습 동기부여가 됐고, 오프라인 네트워킹 파티도 기대됩니다.",
+    author: "1기 수강생, B타입",
+    topic: "주차별 미션 + 동기부여",
+  },
+  {
+    id: 5,
+    quote: "이 클래스의 최대 장점은 쌤의 무한한 피드백을 들을 수 있다는 점인 것 같아요. 리사쌤이 내 뒤에 있다!",
+    author: "1기 수강생, B타입 (프리랜서)",
+    topic: "리사쌤이 내 뒤에 있다",
   },
 ];
 
 export default function TestimonialsSection() {
-  const headerRef = useElementReveal(0.15);
-  const gridRef = useElementReveal(0.05);
+  const ref1 = useElementReveal(0.15);
+  const ref2 = useElementReveal(0.1);
 
   return (
     <section id="testimonials" className="relative py-32 md:py-48" style={{ background: "#000" }}>
       <div className="container">
         {/* Header */}
-        <div ref={headerRef} className="mb-20">
+        <div ref={ref1} className="max-w-3xl mb-20">
           <p className="section-label mb-6 text-reveal">수강생 후기</p>
           <h2
             className="font-display text-reveal delay-100"
@@ -50,67 +56,48 @@ export default function TestimonialsSection() {
               color: "#fff",
             }}
           >
-            수강생들의
+            1기 수강생들의
             <br />
-            <span style={{ color: "rgba(255,255,255,0.4)" }}>실제 이야기.</span>
+            <span style={{ color: "rgba(255,255,255,0.4)" }}>실제 경험담</span>
           </h2>
         </div>
 
         {/* Testimonials grid */}
-        <div ref={gridRef} className="grid md:grid-cols-2 gap-4">
-          {testimonials.map((t, i) => (
+        <div ref={ref2} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, idx) => (
             <div
-              key={i}
-              className="text-reveal card-hover p-8 rounded-2xl flex flex-col justify-between"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                transitionDelay: `${i * 0.1}s`,
-                minHeight: "220px",
-              }}
+              key={testimonial.id}
+              className="text-reveal card-hover p-6 rounded-xl flex flex-col"
+              style={{ transitionDelay: `${idx * 0.08}s` }}
             >
-              {/* Quote mark */}
-              <div>
-                <div
-                  className="font-display text-5xl mb-4 leading-none"
-                  style={{ color: "rgba(255,255,255,0.12)" }}
-                >
-                  "
-                </div>
-                <p
-                  className="text-base md:text-lg leading-relaxed"
-                  style={{
-                    color: "rgba(255,255,255,0.7)",
-                    fontWeight: 300,
-                    fontStyle: "italic",
-                  }}
-                >
-                  {t.quote}
-                </p>
-              </div>
+              {/* Quote */}
+              <blockquote
+                className="mb-6 flex-1"
+                style={{
+                  fontSize: "0.9375rem",
+                  lineHeight: 1.7,
+                  color: "rgba(255,255,255,0.55)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                }}
+              >
+                "{testimonial.quote}"
+              </blockquote>
 
               {/* Author */}
-              <div className="flex items-center gap-3 mt-8">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-                  style={{
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <span
-                    className="font-display text-sm"
-                    style={{ color: "rgba(255,255,255,0.5)", fontWeight: 700 }}
-                  >
-                    {t.initial}
-                  </span>
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-white">{t.name}</div>
+              <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                <div className="pt-4">
                   <div
-                    className="text-xs"
-                    style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300 }}
+                    className="text-xs mb-1"
+                    style={{ color: "rgba(255,255,255,0.25)", fontWeight: 300 }}
                   >
-                    {t.role}
+                    {testimonial.topic}
+                  </div>
+                  <div
+                    className="text-sm font-display"
+                    style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600 }}
+                  >
+                    {testimonial.author}
                   </div>
                 </div>
               </div>
@@ -118,14 +105,31 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Note */}
-        <p
-          className="text-center mt-8 text-xs"
-          style={{ color: "rgba(255,255,255,0.2)", fontWeight: 300 }}
+        {/* CTA */}
+        <div
+          className="text-reveal mt-20 text-center"
+          style={{
+            padding: "3rem 2rem",
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "1.5rem",
+          }}
         >
-          * 위 후기는 플레이스홀더입니다. 실제 수강생 후기로 교체해 주세요.
-        </p>
+          <p
+            className="text-lg mb-4"
+            style={{ color: "rgba(255,255,255,0.5)", fontWeight: 300 }}
+          >
+            500명 이상의 수강생이 이미 시작했습니다.
+          </p>
+          <p
+            className="font-display text-2xl"
+            style={{ color: "#fff", fontWeight: 700 }}
+          >
+            당신도 다음 성공 사례가 될 수 있습니다.
+          </p>
+        </div>
 
+        {/* Divider */}
         <div className="section-divider mt-24" />
       </div>
     </section>

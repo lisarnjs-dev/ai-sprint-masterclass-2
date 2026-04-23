@@ -1,6 +1,6 @@
 /*
  * DESIGN: Apple-Inspired Cinematic Minimalism
- * About: Large statement text, feature cards with icons
+ * About: Large statement text, feature cards with icons, statistics
  */
 import { useElementReveal } from "@/hooks/useScrollReveal";
 
@@ -24,10 +24,17 @@ const features = [
   },
 ];
 
+const stats = [
+  { value: "500+", label: "수강생" },
+  { value: "16K+", label: "팔로워" },
+  { value: "4년", label: "개발 경력" },
+];
+
 export default function AboutSection() {
   const ref1 = useElementReveal(0.15);
   const ref2 = useElementReveal(0.1);
   const ref3 = useElementReveal(0.1);
+  const ref4 = useElementReveal(0.1);
 
   return (
     <section id="about" className="relative py-32 md:py-48" style={{ background: "#000" }}>
@@ -119,6 +126,34 @@ export default function AboutSection() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Statistics */}
+        <div
+          ref={ref4}
+          className="grid grid-cols-3 gap-4 md:gap-8 py-12 border-t border-b"
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+        >
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="text-reveal text-center"
+              style={{ transitionDelay: `${i * 0.1}s` }}
+            >
+              <div
+                className="font-display text-3xl md:text-4xl mb-2"
+                style={{ color: "#fff", fontWeight: 700 }}
+              >
+                {stat.value}
+              </div>
+              <div
+                className="text-xs md:text-sm"
+                style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300 }}
+              >
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Divider */}
