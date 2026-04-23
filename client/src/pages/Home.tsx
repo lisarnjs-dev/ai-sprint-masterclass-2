@@ -15,7 +15,6 @@ import InstructorSection from "@/components/sections/InstructorSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FaqSection from "@/components/sections/FaqSection";
 import ApplySection from "@/components/sections/ApplySection";
-import { BeamsBackground } from "@/components/BeamsBackground";
 
 export default function Home() {
   return (
@@ -32,32 +31,12 @@ export default function Home() {
       {/* Sections */}
       <main>
         <HeroSection />
-        <BeamsBackground className="py-32 md:py-48">
-          <div className="container">
-            <StatsSection />
-          </div>
-        </BeamsBackground>
-        <BeamsBackground className="py-32 md:py-48" intensity="subtle">
-          <div className="container">
-            <AboutSection />
-          </div>
-        </BeamsBackground>
+        <StatsSection />
+        <AboutSection />
         <CurriculumSection />
-        <BeamsBackground className="py-32 md:py-48" intensity="medium">
-          <div className="container">
-            <InstructorSection />
-          </div>
-        </BeamsBackground>
-        <BeamsBackground className="py-32 md:py-48" intensity="subtle">
-          <div className="container">
-            <TestimonialsSection />
-          </div>
-        </BeamsBackground>
-        <BeamsBackground className="py-32 md:py-48" intensity="medium">
-          <div className="container">
-            <FaqSection />
-          </div>
-        </BeamsBackground>
+        <InstructorSection />
+        <TestimonialsSection />
+        <FaqSection />
         <ApplySection />
       </main>
 
