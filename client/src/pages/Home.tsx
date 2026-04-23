@@ -1,25 +1,47 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+/*
+ * DESIGN: Apple-Inspired Cinematic Minimalism
+ * Home: All sections assembled, grain overlay, scroll reveal
+ * Color: #000000 bg / #FFFFFF text / #6e6e73 muted
+ * Typography: Playfair Display + DM Sans + JetBrains Mono
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FloatingCta from "@/components/FloatingCta";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
+import StatsSection from "@/components/sections/StatsSection";
+import CurriculumSection from "@/components/sections/CurriculumSection";
+import InstructorSection from "@/components/sections/InstructorSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import FaqSection from "@/components/sections/FaqSection";
+import ApplySection from "@/components/sections/ApplySection";
 
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div
+      className="min-h-screen"
+      style={{ background: "#000", color: "#fff" }}
+    >
+      {/* Grain texture overlay */}
+      <div className="grain-overlay" />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Sections */}
       <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+        <HeroSection />
+        <StatsSection />
+        <AboutSection />
+        <CurriculumSection />
+        <InstructorSection />
+        <TestimonialsSection />
+        <FaqSection />
+        <ApplySection />
       </main>
+
+      <Footer />
+      <FloatingCta />
     </div>
   );
 }
