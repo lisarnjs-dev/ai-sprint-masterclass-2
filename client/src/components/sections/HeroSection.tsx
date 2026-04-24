@@ -34,9 +34,7 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <div
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-      >
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         {/* Badge */}
         <div
           className="inline-flex items-center gap-2 mb-8 mt-16"
@@ -61,7 +59,7 @@ export default function HeroSection() {
         <h1
           className="font-display glow-white"
           style={{
-            fontSize: "clamp(3rem, 8vw, 7rem)",
+            fontSize: "clamp(1.75rem, 7.5vw, 7rem)",
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
             color: "#fff",
@@ -75,7 +73,9 @@ export default function HeroSection() {
         >
           AI Product
           <br />
-          <span style={{ fontStyle: "italic", color: "rgba(255,255,255,0.85)" }}>
+          <span
+            style={{ fontStyle: "italic", color: "rgba(255,255,255,0.85)" }}
+          >
             Sprint
           </span>
           <br />
@@ -98,7 +98,9 @@ export default function HeroSection() {
         >
           코딩을 몰라도 괜찮습니다.
           <br />
-          AI와 함께 5주 만에 나만의 제품을 만드는 법을 배웁니다.
+          AI와 함께 5주 만에
+          <br />
+          나만의 제품을 만드는 법을 배웁니다.
         </p>
 
         {/* CTA Buttons */}
@@ -142,16 +144,38 @@ export default function HeroSection() {
           }}
         >
           <div style={{ textAlign: "center" }}>
-            <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.3)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: "0.5rem",
+              }}
+            >
               모집 기간
             </div>
             <div style={{ color: "rgba(255,255,255,0.7)", fontWeight: 400 }}>
               4월 23일 ~ 4월 30일
             </div>
           </div>
-          <div style={{ width: "1px", height: "24px", background: "rgba(255,255,255,0.1)" }} />
+          <div
+            style={{
+              width: "1px",
+              height: "24px",
+              background: "rgba(255,255,255,0.1)",
+            }}
+          />
           <div style={{ textAlign: "center" }}>
-            <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.3)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: "0.5rem",
+              }}
+            >
               진행 기간
             </div>
             <div style={{ color: "rgba(255,255,255,0.7)", fontWeight: 400 }}>
@@ -166,7 +190,9 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(-20px)",
+          transform: visible
+            ? "translateX(-50%) translateY(0)"
+            : "translateX(-50%) translateY(-20px)",
           transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s",
         }}
       >
@@ -179,8 +205,20 @@ export default function HeroSection() {
             textTransform: "uppercase",
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ margin: "0 auto" }}>
-            <path d="M10 4v10M6 12l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            style={{ margin: "0 auto" }}
+          >
+            <path
+              d="M10 4v10M6 12l4 4 4-4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
       </div>

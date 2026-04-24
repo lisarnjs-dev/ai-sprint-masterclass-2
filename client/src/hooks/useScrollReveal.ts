@@ -7,25 +7,22 @@ export function useScrollReveal(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
 
-    // IntersectionObserver 옵션 최적화
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const targets = entry.target.querySelectorAll(".text-reveal");
             targets.forEach((t) => t.classList.add("visible"));
-            // Also add visible to the element itself if it has text-reveal
             if (entry.target.classList.contains("text-reveal")) {
               entry.target.classList.add("visible");
             }
-            // 한 번 표시되면 관찰 중단 (성능 최적화)
             observer.unobserve(entry.target);
           }
         });
       },
-      { 
-        threshold,
-        rootMargin: "50px" // 미리 로드 시작
+      {
+        threshold: 0,
+        rootMargin: "0px 0px 200px 0px"
       }
     );
 
@@ -43,20 +40,18 @@ export function useElementReveal(threshold = 0.2) {
     const el = ref.current;
     if (!el) return;
 
-    // IntersectionObserver 옵션 최적화
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            // 한 번 표시되면 관찰 중단 (성능 최적화)
             observer.unobserve(entry.target);
           }
         });
       },
-      { 
-        threshold,
-        rootMargin: "50px" // 미리 로드 시작
+      {
+        threshold: 0,
+        rootMargin: "0px 0px 200px 0px"
       }
     );
 

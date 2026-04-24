@@ -59,11 +59,15 @@ function StatItem({
       <div
         className="font-display"
         style={{
-          fontSize: "clamp(3.5rem, 7vw, 6rem)",
+          fontSize: "clamp(2.5rem, 7vw, 6rem)",
           lineHeight: 1,
           color: "#fff",
           fontWeight: 900,
           letterSpacing: "-0.03em",
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
         }}
       >
         {count}
@@ -71,7 +75,11 @@ function StatItem({
       </div>
       <p
         className="mt-3 text-sm"
-        style={{ color: "rgba(255,255,255,0.35)", fontWeight: 300, letterSpacing: "0.05em" }}
+        style={{
+          color: "rgba(255,255,255,0.35)",
+          fontWeight: 300,
+          letterSpacing: "0.05em",
+        }}
       >
         {label}
       </p>
@@ -90,7 +98,7 @@ export default function StatsSection() {
       }}
     >
       <div className="container">
-        <div className="grid grid-cols-3 gap-4 md:gap-8 overflow-x-auto pb-4">
+        <div className="grid grid-cols-3 gap-4 md:gap-8">
           <StatItem value={5} suffix="주" label="집중 커리큘럼" delay={0} />
           <StatItem value={20} suffix="명" label="선착순 모집" delay={150} />
           <StatItem value={100} suffix="%" label="비개발자 대상" delay={300} />
