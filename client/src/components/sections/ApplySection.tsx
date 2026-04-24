@@ -44,10 +44,10 @@ const pricingOptions = [
   {
     id: 3,
     title: "Master Class 3기",
-    subtitle: "(10% 할인+미리 자리)",
-    price: "531,000",
+    subtitle: "(15% 할인 / 6/15 개강 예정)",
+    price: "501,500",
     originalPrice: "590,000",
-    discount: "10% 할인",
+    discount: "15% 할인",
     features: [
       "8개 파트 + 보너스 강의",
       "실전 프로젝트 2개",
