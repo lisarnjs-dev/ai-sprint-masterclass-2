@@ -46,9 +46,22 @@ export default function InstructorSection() {
               border: "1px solid rgba(255,255,255,0.07)",
             }}
           >
-            {/* Profile info */}
-            <div className="md:col-span-2">
-              <div className="mb-6">
+            {/* Profile image */}
+            <div className="md:col-span-2 flex flex-col items-center md:items-start">
+              <div
+                className="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden mb-6 flex-shrink-0"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
+              >
+                <img
+                  src="/manus-storage/IMG_52063_2f09b870.webp"
+                  alt="리사권 강사"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="text-center md:text-left">
                 <h3
                   className="font-display text-3xl md:text-4xl mb-2"
                   style={{ color: "#fff", fontWeight: 700 }}
@@ -63,7 +76,7 @@ export default function InstructorSection() {
                 </p>
               </div>
 
-              <div className="space-y-3 mb-8">
+              <div className="space-y-3 mb-8 mt-6 md:mt-8">
                 <p
                   className="text-sm leading-relaxed"
                   style={{ color: "rgba(255,255,255,0.45)", fontWeight: 300 }}
