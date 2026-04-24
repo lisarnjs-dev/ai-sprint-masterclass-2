@@ -201,26 +201,27 @@ export default function ApplySection() {
               </ul>
 
               {/* CTA Button */}
-              <button
-                onClick={() => {
-                  alert("신청 링크를 준비 중입니다. 곧 업데이트 됩니다!");
-                }}
-                className="w-full py-3 rounded-lg font-display font-600 transition-all"
+              <a
+                href="https://www.latpeed.com/products/Xs7gH"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 rounded-lg font-display font-600 transition-all text-center"
                 style={{
                   background: option.highlighted ? "#fff" : "rgba(255,255,255,0.08)",
                   color: option.highlighted ? "#000" : "#fff",
                   border: option.highlighted ? "none" : "1px solid rgba(255,255,255,0.15)",
                   cursor: "pointer",
+                  textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                  (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1.02)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+                  (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)";
                 }}
               >
                 {option.cta}
-              </button>
+              </a>
             </div>
           ))}
         </div>
