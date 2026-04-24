@@ -90,11 +90,10 @@ export default function StatsSection() {
       }}
     >
       <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
+        <div className="grid grid-cols-3 gap-4 md:gap-8 overflow-x-auto pb-4">
           <StatItem value={5} suffix="주" label="집중 커리큘럼" delay={0} />
           <StatItem value={20} suffix="명" label="선착순 모집" delay={150} />
           <StatItem value={100} suffix="%" label="비개발자 대상" delay={300} />
-          <StatItem value={1} suffix="개" label="완성 제품 보장" delay={450} />
         </div>
       </div>
     </section>
