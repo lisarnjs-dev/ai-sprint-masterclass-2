@@ -20,7 +20,7 @@ export default function FloatingCta() {
       className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500"
       style={{
         opacity: visible ? 1 : 0,
-        transform: `translateX(-50%) translateY(${visible ? "0" : "20px"})`,
+        transform: `translateY(${visible ? "0" : "20px"})`,
         pointerEvents: visible ? "all" : "none",
       }}
     >
