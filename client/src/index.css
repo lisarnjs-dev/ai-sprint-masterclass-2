@@ -99,6 +99,30 @@
 }
 
 @layer components {
+  /* Magic Text Reveal - Performance optimized */
+  @supports (animation-timeline: view()) {
+    blockquote {
+      /* Use GPU acceleration for text reveal */
+      will-change: auto;
+      backface-visibility: hidden;
+    }
+  }
+
+  /* Reduce animation on mobile devices */
+  @media (max-width: 768px) {
+    blockquote {
+      /* Faster animation on mobile for better UX */
+      animation-duration: 0.8s;
+    }
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    blockquote {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
   .container {
     width: 100%;
     margin-left: auto;

@@ -1,8 +1,10 @@
 /*
  * DESIGN: Apple-Inspired Cinematic Minimalism
- * Testimonials: Quote cards, student feedback, social proof
+ * Testimonials: Quote cards with Magic Text Reveal animation
+ * Performance: Mobile-optimized with reduced motion support
  */
 import { useElementReveal } from "@/hooks/useScrollReveal";
+import { useMagicTextReveal } from "@/hooks/useMagicTextReveal";
 
 const testimonials = [
   {
@@ -37,6 +39,69 @@ const testimonials = [
   },
 ];
 
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+  const { ref, displayedText } = useMagicTextReveal({
+    duration: 1200,
+    delay: index * 100, // Stagger animation start between cards
+    staggerDelay: 20, // Character animation speed (20ms per character)
+    reduceMotion: false,
+  });
+
+  return (
+    <div
+      className="text-reveal card-hover p-6 rounded-xl flex flex-col"
+      style={{
+        transitionDelay: `${index * 0.08}s`,
+        background: "rgba(255,255,255,0.02)",
+        border: "1px solid rgba(255,255,255,0.05)",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.04)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.1)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.02)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.05)";
+      }}
+    >
+      {/* Quote with Magic Text Reveal */}
+      <blockquote
+        ref={ref as React.RefObject<HTMLQuoteElement>}
+        className="mb-6 flex-1 min-h-[120px]"
+        style={{
+          fontSize: "0.9375rem",
+          lineHeight: 1.7,
+          color: "rgba(255,255,255,0.55)",
+          fontWeight: 300,
+          fontStyle: "italic",
+          fontFamily: "'Pretendard', sans-serif",
+        }}
+      >
+        "{testimonial.quote}"
+      </blockquote>
+
+      {/* Author info */}
+      <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <div className="pt-4">
+          <div
+            className="text-xs mb-1"
+            style={{ color: "rgba(255,255,255,0.25)", fontWeight: 300 }}
+          >
+            {testimonial.topic}
+          </div>
+          <div
+            className="text-sm font-display"
+            style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600 }}
+          >
+            {testimonial.author}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
   const ref1 = useElementReveal(0.15);
   const ref2 = useElementReveal(0.1);
@@ -62,46 +127,10 @@ export default function TestimonialsSection() {
           </h2>
         </div>
 
-        {/* Testimonials grid */}
+        {/* Testimonials grid with Magic Text Reveal */}
         <div ref={ref2} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, idx) => (
-            <div
-              key={testimonial.id}
-              className="text-reveal card-hover p-6 rounded-xl flex flex-col"
-              style={{ transitionDelay: `${idx * 0.08}s` }}
-            >
-              {/* Quote */}
-              <blockquote
-                className="mb-6 flex-1"
-                style={{
-                  fontSize: "0.9375rem",
-                  lineHeight: 1.7,
-                  color: "rgba(255,255,255,0.55)",
-                  fontWeight: 300,
-                  fontStyle: "italic",
-                }}
-              >
-                "{testimonial.quote}"
-              </blockquote>
-
-              {/* Author */}
-              <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                <div className="pt-4">
-                  <div
-                    className="text-xs mb-1"
-                    style={{ color: "rgba(255,255,255,0.25)", fontWeight: 300 }}
-                  >
-                    {testimonial.topic}
-                  </div>
-                  <div
-                    className="text-sm font-display"
-                    style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600 }}
-                  >
-                    {testimonial.author}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} index={idx} />
           ))}
         </div>
 
